@@ -17,6 +17,8 @@
 
     <modules>
 	<module>usaco</module>
+	<module>hackerrank</module>
+	<module>kattis</module>
     </modules>
 
 </project>
