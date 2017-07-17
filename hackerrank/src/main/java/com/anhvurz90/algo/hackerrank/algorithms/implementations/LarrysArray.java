@@ -1,4 +1,4 @@
-package com.anhvurz90.practice.misc;
+package com.anhvurz90.algo.hackerrank.algorithms.implementations;
 
 import java.util.Scanner;
 

@@ -1,11 +1,12 @@
+package com.anhvurz90.algo.hackerrank.algorithms.warmup;
 import java.io.*;
 import java.util.*;
 
-public class Solution {
+public class TimeConversion {
 
     public static void main(String[] args) throws Exception {
         /* Enter your code here. Read input from STDIN. Print output to STDOUT. Your class should be named Solution. */
-        new Solution().convertTime();
+        new TimeConversion().convertTime();
     }
     
     private void convertTime() throws Exception {
