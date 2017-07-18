@@ -11,6 +11,7 @@ for first in range(n):
 
 maxCount = max(count);
 
-for index in range(n + m):
-    if (count[index] == maxCount):
-        print(index + 2);
+indices =[index for index, val in enumerate(count) if val==maxCount]
+for index in indices:
+    print(index + 2);
+    
