@@ -1,13 +1,11 @@
 package com.anhvurz90.algo.kattis;
 
-import java.util.LinkedHashSet;
 import java.util.Scanner;
-import java.util.Set;
 
 public class PrimeSieve {
 
     private int n, q;
-    private Set<Integer> queries;
+    private int[] queries;
     private byte[] bit;
     
     private int primeCount;
@@ -27,9 +25,9 @@ public class PrimeSieve {
 //      new Scanner(new File("PriveSieve.inp"));
         n = sc.nextInt();
         q = sc.nextInt();
-        queries = new LinkedHashSet<>();
+        queries = new int[q];
         for (int i = 0; i < q; i++) {
-            queries.add(sc.nextInt());
+            queries[i] = sc.nextInt();
         }
         sc.close();
     }
