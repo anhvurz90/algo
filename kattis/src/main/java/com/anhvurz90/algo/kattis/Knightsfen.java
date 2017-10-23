@@ -57,28 +57,37 @@ public class Knightsfen {
     }
     
     private int countMove(String[] input) {
-        Queue<String[]> queue = new LinkedList<>();
-        queue.add(input);
+        String stFinal = toString(finalState);
+        
+        Queue<String> queue = new LinkedList<>();
+        queue.add(toString(input));
         
         Map<String, Integer> moves = new HashMap<>();
         moves.put(toString(input), 0);
         
         int maxStep = 0;
         while (!queue.isEmpty()) {
-            String[] current = queue.poll();
-            Integer step = moves.get(toString(current));
+            String current = queue.poll();
+            Integer step = moves.get(current);
             if (step > 10) {
                 return step;
             }
-            if (toString(current).equals(toString(finalState))) {
+            if (current.equals(stFinal)) {
                 return step;
             }
+            if (step == 10) {
+                return step + 1;
+            }
+            
             maxStep = Math.max(maxStep, step);
             
-            for (String[] move: allMoves(current)) {
-                if (!moves.containsKey(toString(move))) {
+            for (String move: allMoves(current)) {
+                if (!moves.containsKey(move)) {
                     queue.add(move);
-                    moves.put(toString(move), step + 1);
+                    moves.put(move, step + 1);
+                    if (move.equals(stFinal)) {
+                        return step + 1;
+                    }
                 }
             }
         }
@@ -94,20 +103,12 @@ public class Knightsfen {
         return ret;
     }
     
-    private List<String[]> allMoves(String[] state) {
-        List<String[]> ret = new ArrayList<>();
+    private List<String> allMoves(String state) {
+        List<String> ret = new ArrayList<>();
         
-        int a = 0;
-        int b = 0;
-        for (int row = 0; row < state.length; row++) {
-            for (int col = 0; col < state[0].length(); col++) {
-                if (state[row].charAt(col) == ' ') {
-                    a = row;
-                    b = col;
-                    break;
-                }
-            }
-        }
+        int index = state.indexOf(' ');
+        int a = index / size;
+        int b = index % size;
         for (int i = 0; i < x.length; i++) {
             if (ok(a + x[i], b + y[i])) {
                 ret.add(move(state, a, b, a + x[i], b + y[i]));
@@ -120,20 +121,13 @@ public class Knightsfen {
         return x >= 0 && y >= 0 && x < size && y < size;
     }
     
-    private String[] move(String[] state, int a, int b, int x, int y) {
-        StringBuilder[] newState = new StringBuilder[state.length];
-        for (int i = 0; i < state.length; i++) {
-            newState[i] = new StringBuilder(state[i]);
-        }
-        char tmp = newState[a].charAt(b);
-        newState[a].setCharAt(b, newState[x].charAt(y));
-        newState[x].setCharAt(y, tmp);
+    private String move(String state, int a, int b, int x, int y) {
+        StringBuilder newState = new StringBuilder(state);
+    
+        char tmp = newState.charAt(a * size + b);
+        newState.setCharAt(a * size + b, newState.charAt(x * size + y));
+        newState.setCharAt(x * size + y, tmp);
         
-        String[] ret = new String[state.length];
-        for (int i = 0; i < state.length; i++) {
-            ret[i] = newState[i].toString();
-        }
-        
-        return ret;
+        return newState.toString();
     }
 }
