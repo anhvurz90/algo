@@ -1,4 +1,4 @@
-//package com.anhvurz90.algo.kattis;
+package com.anhvurz90.algo.kattis;
 
 import java.math.BigInteger;
 import java.util.Scanner;
