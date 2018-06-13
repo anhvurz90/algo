@@ -17,10 +17,22 @@ public class NamingRoads {
 				vertices.put(road[1], new HashSet<>());
 			}
 
-			vertices.get(road[0]).add(road[2]);
-			vertices.get(road[1]).add(road[2]);
+			Set<Integer> set0 = vertices.get(road[0]);
+			set0.add(road[2]);
+
+			Set<Integer> set1 = vertices.get(road[1]);
+			set1.add(road[2]);
+
+			if (set0.contains(road[2] - 1) || set0.contains(road[2] + 1)) {
+				return false;
+			}
+
+			if (set1.contains(road[2] - 1) || set1.contains(road[2] + 1)) {
+				return false;
+			}
 		}
 
+		return true;
 	}
 
 }
