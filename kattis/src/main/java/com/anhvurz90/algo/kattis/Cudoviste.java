@@ -1,5 +1,4 @@
-
-//package com.anhvurz90.algo.kattis;
+package com.anhvurz90.algo.kattis;
 
 import java.util.Scanner;
 
