@@ -1,4 +1,4 @@
-package com.anhvurz90.algo.codefights.skilltest;
+package com.anhvurz90.algo.codefights.challenge;
 
 import java.util.Arrays;
 import java.util.HashSet;
